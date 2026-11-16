@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RAIYAN MOTORS — explore cars and find your next drive.">
+  <title>RAIYAN MOTORS | Drive Your Way</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0b1220; --panel:#121d30; --accent:#f5b942; --muted:#aab6c8; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; background:var(--bg); color:#f7f8fb; line-height:1.6; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:20px max(6vw,24px); border-bottom:1px solid #26344a; }
+    .brand { font-weight:800; letter-spacing:2px; font-size:1.25rem; }
+    .brand span { color:var(--accent); }
+    nav a { color:var(--muted); text-decoration:none; margin-left:22px; }
+    .hero { min-height:68vh; display:grid; place-items:center; text-align:center; padding:80px 24px; background:radial-gradient(ellipse at 50% 15%,#263b58 0%,#101b2c 48%,var(--bg) 78%); }
+    .hero-inner { max-width:850px; }
+    .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:4px; font-size:.8rem; font-weight:bold; }
+    h1 { font-size:clamp(2.6rem,7vw,5.6rem); line-height:1.03; margin:18px 0; }
+    h1 span { color:var(--accent); }
+    .hero p { color:var(--muted); font-size:1.1rem; max-width:620px; margin:0 auto 28px; }
+    .button { display:inline-block; background:var(--accent); color:#111827; font-weight:800; padding:13px 24px; border-radius:5px; text-decoration:none; }
+    section { padding:65px max(6vw,24px); }
+    .section-title { text-align:center; margin:0 0 10px; font-size:2rem; }
+    .section-lead { text-align:center; color:var(--muted); margin:0 auto 34px; max-width:620px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; max-width:1100px; margin:auto; }
+    .card { background:var(--panel); border:1px solid #26344a; border-radius:10px; padding:24px; }
+    .car-icon { font-size:2.6rem; }
+    .card h3 { margin:10px 0 5px; }
+    .card p { color:var(--muted); margin:0; }
+    .about { background:#101a2a; text-align:center; }
+    .about p { max-width:760px; margin:14px auto; color:var(--muted); }
+    footer { text-align:center; padding:24px; color:var(--muted); border-top:1px solid #26344a; font-size:.9rem; }
+    @media(max-width:600px) { header { display:block; text-align:center; } nav { margin-top:10px; } nav a { margin:0 8px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">RAIYAN <span>MOTORS</span></div>
+    <nav aria-label="Main navigation">
+      <a href="#vehicles">Vehicles</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow">Welcome to Raiyan Motors</div>
+        <h1>FIND YOUR<br><span>NEXT DRIVE.</span></h1>
+        <p>Discover a drive that matches your style. Explore our vehicle categories and take the next step toward the road ahead.</p>
+        <a class="button" href="#vehicles">Explore vehicles</a>
+      </div>
+    </section>
+    <section id="vehicles">
+      <h2 class="section-title">Explore our collection</h2>
+      <p class="section-lead">A simple showcase of vehicle categories. Replace these sample cards with your own vehicle listings.</p>
+      <div class="grid">
+        <article class="card"><div class="car-icon" aria-hidden="true">🚘</div><h3>Luxury Cars</h3><p>Comfort, design and a premium driving experience.</p></article>
+        <article class="card"><div class="car-icon" aria-hidden="true">🏎️</div><h3>Sports Cars</h3><p>Performance-inspired style for driving enthusiasts.</p></article>
+        <article class="card"><div class="car-icon" aria-hidden="true">🚙</div><h3>SUVs</h3><p>Space and versatility for everyday journeys.</p></article>
+      </div>
+    </section>
+    <section class="about" id="about">
+      <h2 class="section-title">About Raiyan Motors</h2>
+      <p>RAIYAN MOTORS is a demonstration vehicle-showcase website created as part of a DevOps hands-on project. The focus of this project is the application delivery workflow: source control, containerization, cloud infrastructure and Kubernetes deployment.</p>
+    </section>
+    <section id="contact">
+      <h2 class="section-title">Ready for your next drive?</h2>
+      <p class="section-lead">Contact details can be added here when the site is connected to a real business.</p>
+      <div style="text-align:center"><a class="button" href="mailto:contact@example.com">Contact us</a></div>
+    </section>
+  </main>
+  <footer>© <span id="year"></span> RAIYAN MOTORS · DevOps demonstration project</footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

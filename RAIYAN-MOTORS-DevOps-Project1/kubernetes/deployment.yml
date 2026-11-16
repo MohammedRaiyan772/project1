@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raiyan-motors
+  labels:
+    app: motors
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: motors
+  template:
+    metadata:
+      labels:
+        app: motors
+    spec:
+      # Spread matching replicas across eligible nodes as evenly as possible.
+      # This is a preference enforced by the scheduler when it can be satisfied.
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app: motors
+      containers:
+        - name: motors-container
+          image: raiyan100/project1:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
