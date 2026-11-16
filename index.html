@@ -1,0 +1,615 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAIYAN MOTORS - Premium Motorcycle Showroom</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    background: #101114;
+    color: #fff;
+    line-height: 1.6;
+}
+
+:root {
+    --orange: #ff5722;
+    --dark: #101114;
+    --panel: #1b1d22;
+    --muted: #aaa;
+}
+
+header {
+    background: #080809;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #333;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.logo span { color: var(--orange); }
+
+nav {
+    display: flex;
+    gap: 22px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover { color: var(--orange); }
+
+.hero {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    padding: 70px 8%;
+    background:
+    linear-gradient(90deg, rgba(0,0,0,.92), rgba(0,0,0,.25)),
+    url("https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=1800")
+    center/cover no-repeat;
+}
+
+.hero-content { max-width: 620px; }
+
+.tag {
+    color: var(--orange);
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 13px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.1;
+    margin: 18px 0;
+}
+
+.hero h1 span { color: var(--orange); }
+
+.hero p {
+    color: #ddd;
+    margin-bottom: 28px;
+    max-width: 500px;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    padding: 13px 24px;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn:hover { background: #d83e10; }
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid white;
+    margin-left: 10px;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: black;
+}
+
+.section { padding: 80px 8%; }
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-heading small {
+    color: var(--orange);
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.section-heading h2 {
+    font-size: 36px;
+    margin: 8px 0;
+}
+
+.section-heading p { color: var(--muted); }
+
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.filters button {
+    background: #292b30;
+    color: white;
+    border: 1px solid #444;
+    padding: 10px 22px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.filters button.active,
+.filters button:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+}
+
+.search {
+    display: block;
+    width: min(100%, 420px);
+    margin: 0 auto 35px;
+    padding: 14px;
+    background: #202228;
+    border: 1px solid #444;
+    color: white;
+    border-radius: 4px;
+    outline: none;
+}
+
+.bike-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.bike-card {
+    background: var(--panel);
+    border: 1px solid #292b30;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.bike-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--orange);
+}
+
+.bike-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.bike-info { padding: 22px; }
+
+.category {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.bike-info h3 {
+    font-size: 21px;
+    margin: 7px 0;
+}
+
+.bike-info p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.specs {
+    border-top: 1px solid #393939;
+    border-bottom: 1px solid #393939;
+    margin: 16px 0;
+    padding: 12px 0;
+    display: flex;
+    justify-content: space-between;
+    color: #ccc;
+    font-size: 12px;
+}
+
+.price {
+    color: var(--orange);
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.bike-info .btn {
+    width: 100%;
+    text-align: center;
+}
+
+.no-results {
+    display: none;
+    text-align: center;
+    color: var(--muted);
+    padding: 30px;
+    grid-column: 1 / -1;
+}
+
+.featured {
+    background: #1b1d22;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    align-items: center;
+    gap: 45px;
+}
+
+.featured img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.featured h2 {
+    font-size: 38px;
+    margin: 12px 0;
+}
+
+.featured h2 span { color: var(--orange); }
+
+.featured p {
+    color: #bbb;
+    margin-bottom: 20px;
+}
+
+.features, .reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.feature-box, .review {
+    background: var(--panel);
+    padding: 28px 22px;
+    border: 1px solid #292b30;
+}
+
+.feature-box { text-align: center; }
+
+.feature-box h3 { margin: 10px 0; }
+
+.feature-box p, .review p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.symbol {
+    font-size: 32px;
+    color: var(--orange);
+}
+
+.review {
+    border-left: 3px solid var(--orange);
+}
+
+.review p { margin: 12px 0; }
+
+.stars { color: #ffb02e; }
+
+.contact {
+    background: #1b1d22;
+    text-align: center;
+}
+
+.contact p {
+    color: #bbb;
+    margin: 12px 0 25px;
+}
+
+footer {
+    padding: 28px 8%;
+    background: #080809;
+    color: #999;
+    text-align: center;
+    font-size: 13px;
+}
+
+footer span { color: var(--orange); }
+
+@media(max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero { min-height: 500px; }
+    .section { padding: 60px 5%; }
+
+    .btn-outline {
+        margin: 10px 0 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">RAIYAN <span>MOTORS</span></div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#bikes">Motorcycles</a>
+        <a href="#about">About</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="tag">PREMIUM MOTORCYCLE SHOWROOM</div>
+        <h1>RIDE BEYOND <span>LIMITS.</span></h1>
+        <p>
+            Discover powerful machines, exceptional performance
+            and unforgettable riding experiences.
+            Your next adventure starts at RAIYAN MOTORS.
+        </p>
+        <a href="#bikes" class="btn">EXPLORE BIKES</a>
+        <a href="#contact" class="btn btn-outline">CONTACT US</a>
+    </div>
+</section>
+
+<section class="section" id="bikes">
+    <div class="section-heading">
+        <small>OUR COLLECTION</small>
+        <h2>EXPLORE MOTORCYCLES</h2>
+        <p>Choose the machine that matches your riding style.</p>
+    </div>
+
+    <div class="filters">
+        <button class="active" data-filter="all">All Bikes</button>
+        <button data-filter="sport">Sport</button>
+        <button data-filter="cruiser">Cruiser</button>
+        <button data-filter="adventure">Adventure</button>
+        <button data-filter="street">Street</button>
+    </div>
+
+    <input class="search" id="searchInput"
+           type="text" placeholder="Search motorcycles...">
+
+    <div class="bike-grid" id="bikeGrid">
+
+        <article class="bike-card" data-category="sport">
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=700" alt="Sport motorcycle">
+            <div class="bike-info">
+                <span class="category">SPORT</span>
+                <h3>Sport Performance 650</h3>
+                <p>Designed for speed, precision and control.</p>
+                <div class="specs">
+                    <span>650 CC</span>
+                    <span>6 Speed</span>
+                    <span>ABS</span>
+                </div>
+                <div class="price">₹5,49,000</div>
+                <a href="#contact" class="btn">ENQUIRE NOW</a>
+            </div>
+        </article>
+
+        <article class="bike-card" data-category="cruiser">
+            <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=700" alt="Cruiser motorcycle">
+            <div class="bike-info">
+                <span class="category">CRUISER</span>
+                <h3>Classic Cruiser 350</h3>
+                <p>Comfort and timeless style for long rides.</p>
+                <div class="specs">
+                    <span>350 CC</span>
+                    <span>5 Speed</span>
+                    <span>ABS</span>
+                </div>
+                <div class="price">₹2,25,000</div>
+                <a href="#contact" class="btn">ENQUIRE NOW</a>
+            </div>
+        </article>
+
+        <article class="bike-card" data-category="adventure">
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=700" alt="Adventure motorcycle">
+            <div class="bike-info">
+                <span class="category">ADVENTURE</span>
+                <h3>Adventure Explorer 500</h3>
+                <p>Built to take you beyond familiar roads.</p>
+                <div class="specs">
+                    <span>500 CC</span>
+                    <span>6 Speed</span>
+                    <span>ABS</span>
+                </div>
+                <div class="price">₹4,10,000</div>
+                <a href="#contact" class="btn">ENQUIRE NOW</a>
+            </div>
+        </article>
+
+        <article class="bike-card" data-category="street">
+            <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700" alt="Street motorcycle">
+            <div class="bike-info">
+                <span class="category">STREET</span>
+                <h3>Street Rider 250</h3>
+                <p>Agile handling for everyday city rides.</p>
+                <div class="specs">
+                    <span>250 CC</span>
+                    <span>6 Speed</span>
+                    <span>ABS</span>
+                </div>
+                <div class="price">₹1,85,000</div>
+                <a href="#contact" class="btn">ENQUIRE NOW</a>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="no-results" id="noResults">
+        No motorcycles found. Try another search.
+    </div>
+</section>
+
+<section class="section featured" id="about">
+    <div>
+        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=1000" alt="Featured motorcycle">
+    </div>
+
+    <div>
+        <div class="tag">BUILT FOR RIDERS</div>
+        <h2>MORE THAN JUST A <span>MOTORCYCLE.</span></h2>
+        <p>
+            At RAIYAN MOTORS, we believe every ride should
+            be an experience. Explore our motorcycle collection
+            and discover the perfect combination of performance,
+            comfort and design.
+        </p>
+        <a href="#bikes" class="btn">VIEW COLLECTION</a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-heading">
+        <small>WHY CHOOSE US</small>
+        <h2>THE RAIYAN ADVANTAGE</h2>
+    </div>
+
+    <div class="features">
+        <div class="feature-box">
+            <div class="symbol">★</div>
+            <h3>Premium Collection</h3>
+            <p>A carefully presented range of motorcycles.</p>
+        </div>
+
+        <div class="feature-box">
+            <div class="symbol">⚙</div>
+            <h3>Expert Support</h3>
+            <p>Guidance to help you find your ideal motorcycle.</p>
+        </div>
+
+        <div class="feature-box">
+            <div class="symbol">✓</div>
+            <h3>Quality Service</h3>
+            <p>Customer-focused assistance and support.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="reviews">
+    <div class="section-heading">
+        <small>RIDER EXPERIENCES</small>
+        <h2>WHAT OUR CUSTOMERS SAY</h2>
+    </div>
+
+    <div class="reviews">
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>"Great motorcycle collection and a professional showroom experience."</p>
+            <strong>Customer Review</strong>
+        </div>
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>"The team helped me understand different motorcycle options."</p>
+            <strong>Customer Review</strong>
+        </div>
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>"A great place to explore different styles of motorcycles."</p>
+            <strong>Customer Review</strong>
+        </div>
+    </div>
+</section>
+
+<section class="section contact" id="contact">
+    <div class="tag">LET'S CONNECT</div>
+    <h2>READY FOR YOUR NEXT RIDE?</h2>
+    <p>Contact RAIYAN MOTORS to enquire about our collection.</p>
+    <a href="mailto:info@raiyanmotors.com" class="btn">
+        SEND AN ENQUIRY
+    </a>
+</section>
+
+<footer>
+    <p>© 2026 <span>RAIYAN MOTORS</span>. All Rights Reserved.</p>
+    <p>Ride Beyond Limits.</p>
+</footer>
+
+<script>
+const filterButtons = document.querySelectorAll(".filters button");
+const bikeCards = document.querySelectorAll(".bike-card");
+const searchInput = document.getElementById("searchInput");
+const noResults = document.getElementById("noResults");
+
+let selectedCategory = "all";
+
+function filterBikes() {
+    const searchText = searchInput.value.toLowerCase();
+    let visibleCount = 0;
+
+    bikeCards.forEach(card => {
+        const category = card.dataset.category;
+        const bikeName = card.querySelector("h3").textContent.toLowerCase();
+        const description = card.querySelector("p").textContent.toLowerCase();
+
+        const categoryMatch =
+            selectedCategory === "all" ||
+            category === selectedCategory;
+
+        const searchMatch =
+            bikeName.includes(searchText) ||
+            description.includes(searchText);
+
+        if (categoryMatch && searchMatch) {
+            card.style.display = "block";
+            visibleCount++;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    noResults.style.display =
+        visibleCount === 0 ? "block" : "none";
+}
+
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+
+        button.classList.add("active");
+        selectedCategory = button.dataset.filter;
+
+        filterBikes();
+    });
+});
+
+searchInput.addEventListener("input", filterBikes);
+</script>
+
+</body>
+</html>
+
